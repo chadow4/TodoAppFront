@@ -1,0 +1,52 @@
+.home {
+  padding-top: 18em;
+  padding-bottom: 18em;
+}
+
+.welcome-text-container h1 {
+  font-size: 4em;
+  letter-spacing: 0.1em; /* Utilisation d'une unité de mesure relative */
+  white-space: normal; /* Évite le chevauchement des mots */
+  word-wrap: break-word;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+  .welcome-text-container h1 {
+    font-size: 2em;
+  }
+  .home{
+    padding-top: 10em;
+    padding-bottom: 10em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home{
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+}
+
+.welcome-text-container h2 {
+  font-size: 20pt;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+img {
+  animation: bouger 2s ease-in-out infinite;
+}
+
+@keyframes bouger {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

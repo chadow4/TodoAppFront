@@ -1,0 +1,47 @@
+<div class="register-form animate__animated animate__fadeIn">
+  <form #registerF="ngForm" (ngSubmit)="registerF.form.valid && onSubmit()">
+    <div class="form-title">
+      <h1 class="text-uppercase fw-bold text-center mb-4">Inscription</h1>
+    </div>
+    <div class="form-group">
+      <input type="text" id="username" minlength="2" maxlength="32" name="username" placeholder="Pseudo"
+             [(ngModel)]="registerForm.username" required
+             class="form-control"
+             #username="ngModel">
+    </div>
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="username.errors && registerF.submitted">
+      le champ ne doit pas être vide et doit contenir entre 2 et 32 caractères
+    </div>
+    <div class="form-group">
+      <input type="email" id="email" minlength="2" maxlength="32" name="email" placeholder="Email"
+             [(ngModel)]="registerForm.email" required email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+             class="form-control"
+             #email="ngModel">
+    </div>
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="email.errors && registerF.submitted">
+      L'email n'est pas au bon format.
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password" name="password" minlength="8" placeholder="Mot de passe"
+             [(ngModel)]="registerForm.password" required
+             class="form-control mt-1" #password="ngModel">
+    </div>
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="password.errors && registerF.submitted">
+      le champ ne doit pas être vide et doit contenir au moins 8 caractères
+    </div>
+    <div class="form-group text-center">
+      <button class="btn-juju-rounded" type="submit">Inscription</button>
+    </div>
+  </form>
+  <div class="register-form-bottom">
+    <span class="me-3">déjà un compte ?</span>
+    <a [routerLink]="['/login']">Connexion</a>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<div *ngIf="user$ | async as user">
+  <h1>{{ user.username }}</h1>
+  <h2>Todos finished:</h2>
+  <ul>
+    <li *ngFor="let todo of finishedTodos$ | async">{{ todo.title }}</li>
+  </ul>
+  <h2>Todos not finished:</h2>
+  <ul>
+    <li *ngFor="let todo of notFinishedTodos$ | async">{{ todo.title }}</li>
+  </ul>
+</div>

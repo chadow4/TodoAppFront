@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import '~animate.css/animate.min';
+* {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+// alert bar
+
+.mat-snack-bar-container {
+  max-width: 15vw !important;
+  transition: 0.5s right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: 3px 3px 10px #000;
+  border-radius: 10px 10px 10px 10px;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 996px) {
+  .mat-snack-bar-container {
+    max-width: 75% !important;
+  }
+}
+
+
+.success-snackbar {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.error-snackbar {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.mat-simple-snackbar-action button {
+  background: white;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-juju{
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #5791ff;
+  border: none;
+  color: white;
+  &:hover{
+    background-color: #2f75f6;
+  }
+}
+
+.btn-juju-rounded{
+  @extend .btn-juju;
+  border-radius: 25px;
+}

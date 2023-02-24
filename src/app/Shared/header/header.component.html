@@ -1,0 +1,57 @@
+<nav class="d-flex align-items-center justify-content-between px-3 px-md-5 py-4 bg-white shadow-sm">
+  <p class="d-md-none d-flex burger-menu m-0 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft">
+    <i class="fa-sharp fa-solid fa-bars-staggered"></i>
+  </p>
+  <div class="d-flex align-items-center">
+    <h1 class="m-0 text-uppercase fw-bold cursor-pointer me-1" [routerLink]="['/']">Juju TODOAPP</h1>
+    <img height="50" src="assets/todoicon.png">
+  </div>
+  <ul class="navbar-nav flex-row gap-4 d-none d-md-flex">
+    <li *ngIf="!isLoggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju" [routerLink]="['/login']">Connexion</a>
+    </li>
+    <li *ngIf="!isLoggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju"
+                                                        [routerLink]="['/register']">Inscription</a></li>
+    <li *ngIf="!isLoggedIn" class="nav-item dropdown rounded">
+      <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown" role="button"
+         data-bs-toggle="dropdown"
+         aria-expanded="false"><i class="fa fa-user me-2" aria-hidden="true"></i>Mon compte</a>
+      <ul class="dropdown-menu animate__animated animate__fadeIn py-2" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#"><i class="fas fa-tasks me-2 py-2"></i>Ma TodoList</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2 py-2"></i>Ajouter une tâche</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item py-2" href="#"><i class="fa fa-window-close me-2" aria-hidden="true"></i>Deconnexion</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+  <div class="offcanvas-header">
+    <a type="button" class="burger-menu ms-1 mt-1" data-bs-dismiss="offcanvas" aria-label="Fermer">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+  </div>
+  <h1 class="text-uppercase text-center fw-bold">Menu</h1>
+  <div class="navbar-nav flex-column offcanvas-body gap-4 animate__animated animate__fadeInDown">
+    <li *ngIf="!isLoggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju" href="">Connexion</a></li>
+    <li *ngIf="!isLoggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju" href="">Inscription</a></li>
+    <li *ngIf="isLoggedIn" class="nav-item dropdown rounded">
+      <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown2"
+         role="button" data-bs-toggle="dropdown"
+         aria-expanded="false"><i class="fa fa-user me-2" aria-hidden="true"></i>Mon compte</a>
+      <ul class="dropdown-menu animate__animated animate__fadeIn w-100" aria-labelledby="navbarDropdown2">
+        <li><a class="dropdown-item" href="#"><i class="fas fa-tasks me-2"></i> Ma TodoList</a></li>
+        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2"></i>Ajouter une tâche</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#"><i class="fa fa-window-close me-2" aria-hidden="true"></i>Deconnexion</a>
+        </li>
+      </ul>
+    </li>
+  </div>
+</div>
