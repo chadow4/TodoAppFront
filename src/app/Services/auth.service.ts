@@ -1,72 +1,65 @@
 import {Injectable} from '@angular/core';
-import {UserAuth} from "../Models/user.auth.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject, Observable, tap} from "rxjs";
+import {Router} from "@angular/router";
+import {User, UserCreate, UserJwtSession, UserJwtToken, UserLogin} from "../Models/user-model";
+import {AlertService} from "./alert.service";
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
-const AUTH_API = 'http://localhost:8080/api/auth/';
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+
+const AUTH_API = 'http://localhost:3000/auth/';
+const USER_TOKEN_KEY = 'user_token_key';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private user!: User;
+  private isLoggedInSubject = new BehaviorSubject<boolean>(!!this.getCurrentSession());
 
-  constructor(private http: HttpClient) {
+  authStateChanged = this.isLoggedInSubject.asObservable();
+
+  constructor(private http: HttpClient, private router: Router, private alertService: AlertService) {
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.getToken();
-  }
+  login(userLogin: UserLogin): Observable<UserJwtToken> {
 
-  public saveToken(token: string): void {
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.setItem(TOKEN_KEY, token);
-  }
-
-  public getToken(): string | null {
-    return window.localStorage.getItem(TOKEN_KEY);
-  }
-
-  public saveUserSession(user: any): void {
-    window.localStorage.removeItem(USER_KEY);
-    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  public getUserSession(): UserAuth {
-    const user = localStorage.getItem(USER_KEY);
-    return user ? JSON.parse(user) : null;
-  }
-
-  public signIn(username: string, password: string): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'signin',
-      {
-        username,
-        password,
-      },
-      httpOptions
+    return this.http.post<UserJwtToken>(AUTH_API + 'login', {userLogin}).pipe(
+      tap((response: UserJwtToken) => {
+        // mettre à jour le BehaviorSubject si la connexion réussit
+        this.isLoggedInSubject.next(true);
+      })
     );
   }
 
-  public signOut(): void {
-    window.localStorage.clear();
-    window.location.reload();
+  register(userCreateDto: UserCreate): Observable<any> {
+    return this.http.post<UserCreate>(AUTH_API + 'register', {userCreateDto});
   }
 
-  public signUp(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'signup',
-      {
-        username,
-        email,
-        password,
-      },
-      httpOptions
-    );
+  logout(): void {
+    localStorage.removeItem(USER_TOKEN_KEY);
+    this.isLoggedInSubject.next(false);
+    this.router.navigate(['/']);
+  }
+
+  getCurrentSession(): UserJwtSession | null {
+    const userJwtToken = localStorage.getItem(USER_TOKEN_KEY);
+    return userJwtToken ? JSON.parse(atob(userJwtToken.split('.')[1])) : null;
+  }
+
+  isLoggedIn(): boolean {
+    return this.getCurrentSession() !== null;
+  }
+
+  getCurrentToken(): UserJwtToken | null {
+    const userJwtToken = window.localStorage.getItem(USER_TOKEN_KEY);
+    return userJwtToken ? JSON.parse(userJwtToken) : null;
+  }
+
+  setCurrentToken(token: UserJwtToken): void {
+    const userJwtTokenString = JSON.stringify(token);
+    window.localStorage.setItem(USER_TOKEN_KEY, userJwtTokenString);
+    this.router.navigate(['/']);
+    this.alertService.success('Vous etes maintenant connecté');
   }
 
 }

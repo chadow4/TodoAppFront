@@ -1,4 +1,4 @@
-<div class="login-form animate__animated animate__fadeIn">
+<div class="login-form row animate__animated animate__fadeIn">
   <form #loginF="ngForm" (ngSubmit)="loginF.form.valid && onSubmit()">
     <div class="form-title">
       <h1 class="text-uppercase fw-bold text-center mb-4">Connexion</h1>
@@ -26,9 +26,9 @@
     <div class="form-group text-center">
       <button class="btn-juju-rounded" type="submit">Connexion</button>
     </div>
+    <div class="login-form-bottom">
+      <span class="me-3">pas encore de compte ?</span>
+      <a [routerLink]="['/register']">Inscription</a>
+    </div>
   </form>
-  <div class="login-form-bottom">
-    <span class="me-3">pas encore de compte ?</span>
-    <a [routerLink]="['/register']">Inscription</a>
-  </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="register-form animate__animated animate__fadeIn">
+<div class="register-form row h-100 animate__animated animate__fadeIn">
   <form #registerF="ngForm" (ngSubmit)="registerF.form.valid && onSubmit()">
     <div class="form-title">
       <h1 class="text-uppercase fw-bold text-center mb-4">Inscription</h1>
@@ -39,9 +39,9 @@
     <div class="form-group text-center">
       <button class="btn-juju-rounded" type="submit">Inscription</button>
     </div>
+    <div class="register-form-bottom">
+      <span class="me-3">déjà un compte ?</span>
+      <a [routerLink]="['/login']">Connexion</a>
+    </div>
   </form>
-  <div class="register-form-bottom">
-    <span class="me-3">déjà un compte ?</span>
-    <a [routerLink]="['/login']">Connexion</a>
-  </div>
 </div>

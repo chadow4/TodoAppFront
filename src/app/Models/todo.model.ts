@@ -1,9 +1,15 @@
 import {Category} from "./category.model";
 
-export interface Todo{
+export interface Todo {
   title: string;
-  description : string;
-  finished : boolean;
-  categories : Category[];
+  finished: boolean;
+  date: Date;
+  categories: Category;
 
+}
+
+export interface TodoCreate {
+  title: string;
+  description: string;
+  category: Category;
 }

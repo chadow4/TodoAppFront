@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../Services/auth.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../Services/alert.service";
+import {UserCreate} from "../../Models/user-model";
 
 @Component({
   selector: 'app-register',
@@ -12,33 +13,20 @@ export class RegisterComponent implements OnInit {
 
   registerForm = {username: '', email: '', password: '', passwordRetype: ''};
 
-  isLoggedIn: boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    if (this.isLoggedIn) {
-      this.router.navigate(['home']).then(r =>
-        this.alertService.success('Vous êtes déjà connecté')
-      )
-    }
   }
+
   onSubmit() {
-    const {username, email, password, passwordRetype} = this.registerForm;
-    this.authService.signUp(username, email, password).subscribe({
-      next: data => {
-        console.log(data);
-        this.router.navigate(['home']).then(r => {
-          this.alertService.success('Inscription réussi')
-        })
+    const userCreate = this.registerForm as UserCreate;
+    this.authService.register(userCreate).subscribe({
+      next: () => {
+        this.router.navigate(['login']).then(() => this.alertService.success('Inscription réussie'));
       },
-      error: err => {
-        this.alertService.error(err.error.message);
-      }
-    })
-
+      error: err => this.alertService.error(err.error.message)
+    });
   }
-
 }

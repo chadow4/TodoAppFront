@@ -5,9 +5,12 @@ import {NotFoundComponent} from "./Pages/not-found/not-found.component";
 import {DashboardComponent} from "./Pages/dashboard/dashboard.component";
 import {LoginComponent} from "./Pages/login/login.component";
 import {RegisterComponent} from "./Pages/register/register.component";
+import {ConnectedGuard} from "./guard/connected-guard";
+import {DisconnectedGuard} from "./guard/disconnected-guard";
 
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
@@ -18,15 +21,18 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    //canActivate: [DisconnectedGuard]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [ConnectedGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [ConnectedGuard]
   },
   {
     path: '**',
