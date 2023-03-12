@@ -5,9 +5,19 @@
   font-family: 'Montserrat', sans-serif;
   margin: 0;
 }
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
 html{
   height: 100%;
   min-height: 100%;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  margin:0;
+  min-height: 100vh;
 }
 
 
@@ -66,4 +76,13 @@ html{
   @extend .btn-juju;
   border-radius: 25px;
 }
+.mat-headline, .mat-typography h1 {
+  font: 400 30px/32px 'Montserrat', sans-serif;
+}
 
+
+.mat-simple-snackbar-action button {
+  max-height: 36px;
+  min-width: 0;
+  color: black !important;
+}

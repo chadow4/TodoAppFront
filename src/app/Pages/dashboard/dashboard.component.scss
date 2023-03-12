@@ -3,6 +3,19 @@
   justify-content: center;
   flex-direction: column;
 
+  .presentation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px !important;
+    color: black;
+    font-weight: bold !important;
+    background: #f6f5f5;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  }
+
   .table {
     max-width: 1250px !important;
     border-radius: 10px !important;
@@ -13,8 +26,6 @@
     tr {
       padding: 1.25em 0 !important;
       text-align: center;
-
-
     }
 
     td {
@@ -28,7 +39,7 @@
 
     .tr-todo {
       background: #ececec;
-
+      border-bottom: 0.5px black dotted;
     }
 
     .tr-category {
@@ -37,6 +48,7 @@
 
 
   }
+
   .table > :not(caption) > * > * {
     padding: .5rem .5rem;
     background-color: var(--bs-table-bg);
@@ -45,3 +57,10 @@
   }
 }
 
+@media (max-width: 992px) {
+  .dashboard presentation {
+    box-shadow: none;
+    border: none;
+  }
+
+}

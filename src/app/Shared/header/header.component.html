@@ -11,17 +11,23 @@
     </li>
     <li *ngIf="!loggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju"
                                                       [routerLink]="['/register']">Inscription</a></li>
-    <li *ngIf="!loggedIn" class="nav-item dropdown rounded">
+    <li *ngIf="loggedIn" class="nav-item dropdown rounded">
       <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown" role="button"
          data-bs-toggle="dropdown"
          aria-expanded="false"><i class="fa fa-user me-2" aria-hidden="true"></i>Mon compte</a>
       <ul class="dropdown-menu animate__animated animate__fadeIn py-2" aria-labelledby="navbarDropdown">
-        <li><a [routerLink]="['/dashboard']" class="dropdown-item" href="#"><i class="fas fa-tasks me-2 py-2"></i>Ma TodoList</a></li>
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2 py-2"></i>Ajouter une tâche</a></li>
+
+        <li><a [routerLink]="['/dashboard']" class="dropdown-item" href="#"><i class="fas fa-tasks me-2 py-2"></i>Ma
+          TodoList</a></li>
+        <li><a [routerLink]="['/adding-todo']" class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2 py-2"></i>Ajouter
+          une tâche</a></li>
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a (click)="logout()" class="dropdown-item py-2" href="#"><i class="fa fa-window-close me-2" aria-hidden="true"></i>Deconnexion</a>
+        <li><a [routerLink]="['/my-account']" class="dropdown-item" href="#"><i class="fa fa-user me-2 py-2"></i> Mes
+          informations</a></li>
+        <li><a (click)="logout()" class="dropdown-item py-2" href="#"><i class="fa fa-window-close me-2"
+                                                                         aria-hidden="true"></i>Deconnexion</a>
         </li>
       </ul>
     </li>
@@ -37,19 +43,26 @@
   </div>
   <h1 class="text-uppercase text-center fw-bold">Menu</h1>
   <div class="navbar-nav flex-column offcanvas-body gap-4 animate__animated animate__fadeInDown">
-    <li *ngIf="!loggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju" href="">Connexion</a></li>
-    <li *ngIf="!loggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju" href="">Inscription</a></li>
+    <li *ngIf="!loggedIn" class="nav-item rounded"><a data-bs-dismiss="offcanvas" [routerLink]="['/login']" class="nav-link underline btn-juju"
+                                                      href="">Connexion</a></li>
+    <li *ngIf="!loggedIn" class="nav-item rounded"><a data-bs-dismiss="offcanvas"  [routerLink]="['/register']" class="nav-link underline btn-juju"
+                                                      href="">Inscription</a></li>
     <li *ngIf="loggedIn" class="nav-item dropdown rounded">
       <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown2"
          role="button" data-bs-toggle="dropdown"
          aria-expanded="false"><i class="fa fa-user me-2" aria-hidden="true"></i>Mon compte</a>
       <ul class="dropdown-menu animate__animated animate__fadeIn w-100" aria-labelledby="navbarDropdown2">
-        <li><a class="dropdown-item" href="#"><i class="fas fa-tasks me-2"></i> Ma TodoList</a></li>
-        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2"></i>Ajouter une tâche</a></li>
+        <li><a data-bs-dismiss="offcanvas"  [routerLink]="['/my-account']" class="dropdown-item" href="#"><i class="fa fa-user me-2"></i> Mes
+          informations</a></li>
+        <li><a data-bs-dismiss="offcanvas"  [routerLink]="['/dashboard']" class="dropdown-item" href="#"><i class="fas fa-tasks me-2"></i> Ma
+          TodoList</a></li>
+        <li><a data-bs-dismiss="offcanvas"  [routerLink]="['/adding-todo']" class="dropdown-item" href="#"><i class="fa-solid fa-pen me-2"></i>Ajouter
+          une tâche</a></li>
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="#"><i class="fa fa-window-close me-2" aria-hidden="true"></i>Deconnexion</a>
+        <li><a (click)="logout()" class="dropdown-item" href="#"><i class="fa fa-window-close me-2"
+                                                                    aria-hidden="true"></i>Deconnexion</a>
         </li>
       </ul>
     </li>

@@ -6,7 +6,9 @@ import {DashboardComponent} from "./Pages/dashboard/dashboard.component";
 import {LoginComponent} from "./Pages/login/login.component";
 import {RegisterComponent} from "./Pages/register/register.component";
 import {ConnectedGuard} from "./guard/connected-guard";
+import {AddingTodoComponent} from "./Pages/adding-todo/adding-todo.component";
 import {DisconnectedGuard} from "./guard/disconnected-guard";
+import {MyaccountComponent} from "./Pages/myaccount/myaccount.component";
 
 const routes: Routes = [
   {
@@ -22,7 +24,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //canActivate: [DisconnectedGuard]
+    canActivate: [DisconnectedGuard]
+  },
+  {
+    path: 'adding-todo',
+    component: AddingTodoComponent,
+    canActivate: [DisconnectedGuard]
+  },
+  {
+    path: 'my-account',
+    component: MyaccountComponent,
+    canActivate: [DisconnectedGuard]
   },
   {
     path: 'login',

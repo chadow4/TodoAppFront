@@ -1,0 +1,67 @@
+.my-account{
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.my-account-informations{
+  display:flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 4em 5em;
+  border-radius: 10px;
+  max-width: 960px !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  background: #f6f5f5;
+  font-weight: bold !important;
+}
+
+.my-account-informations-image{
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+  .my-account-informations-image-container{
+    width: 150px; /* Set the desired width and height */
+    height: 150px;
+    overflow: hidden; /* Hide any overflow outside the container */
+    border-radius: 50%;
+
+    img{
+      width: 100%; /* Make the image fill the container */
+      height: 100%;
+      object-fit: cover; /* Scale the image to fill the container while preserving aspect ratio */
+    }
+  }
+}
+
+.my-account-informations-pseudo{
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+}
+
+.my-account-informations-email{
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+}
+
+.my-account-informations-password{
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+}
+
+
+@media (max-width: 992px) {
+  .my-account-informations {
+    box-shadow: none;
+    border: none;
+  }
+
+  .my-account{
+    padding: 10em 0em;
+  }
+
+}

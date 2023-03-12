@@ -5,8 +5,9 @@ import {UserService} from "../../Services/user.service";
 import {AuthService} from "../../Services/auth.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../Services/alert.service";
-import {User} from "../../Models/user-model";
-import {Category, CategoryListing} from 'src/app/Models/category.model';
+import {User, UserJwtSession} from "../../Models/user-model";
+import {CategoryListing} from 'src/app/Models/category.model';
+import {TodoService} from "../../Services/todo.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,74 +18,39 @@ export class DashboardComponent implements OnInit {
 
   countTodo: number = 0;
 
-  user: User = {
-    username: 'John Doe',
-    email: 'john@example.com',
-    todos: [
-      {
-        title: 'Finir de coder cette todoList',
-        finished: false,
-        date: new Date('2023-03-11'),
-        categories: {title: 'Développement'},
-      },
-      {
-        title: 'Faire la lessive',
-        finished: true,
-        date: new Date('2023-03-10'),
-        categories: {title: 'Tâches ménagères'},
-      },
-      {
-        title: 'Se promener',
-        finished: false,
-        date: new Date('2023-03-09'),
-        categories: {title: 'Quotidien'},
-      },
-      {
-        title: 'Réviser la base de données',
-        finished: false,
-        date: new Date('2023-03-08'),
-        categories: {title: 'Devoir'},
-      },
-      {
-        title: 'Faire le ménage',
-        finished: true,
-        date: new Date('2023-03-07'),
-        categories: {title: 'Tâches ménagères'},
-      },
-      {
-        title: 'Finir le TP de Gentoo',
-        finished: false,
-        date: new Date('2023-03-06'),
-        categories: {title: 'Devoir'},
-      },
-    ],
-  };
+  userSession?: UserJwtSession;
+  userInformation!: User;
 
   categories: CategoryListing[] = [];
   selectedCategory = '';
 
-
-  user$!: Observable<User>
-  finishedTodos$!: Observable<Todo[]>
-  notFinishedTodos$!: Observable<Todo[]>;
-
   constructor(private userService: UserService,
               private auth: AuthService,
               private router: Router,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private todoService: TodoService) {
   }
 
   ngOnInit() {
-    this.setCategoriesAndTodosForUser(this.user);
-    this.countTodo = this.user.todos.filter(todo => !todo.finished).length;
+    this.userSession = this.auth.getCurrentSession();
+    this.getUserInformation();
+  }
+
+  getUserInformation() {
+    this.categories = [];
+    this.userService.getUserInformation(this.userSession?.id).subscribe(res => {
+      this.userInformation = res;
+      this.setCategoriesAndTodosForUser(this.userInformation);
+      this.countTodo = this.userInformation.todos.filter(todo => !todo.finished).length;
+    })
   }
 
   setCategoriesAndTodosForUser(user: User): void {
     for (const todo of user.todos) {
       if (!todo.finished) {
-        let categoryIndex = this.categories.findIndex(c => c.title === todo.categories.title)
+        let categoryIndex = this.categories.findIndex(c => c.title === todo.category.title)
         if (categoryIndex === -1) {
-          this.categories.push({title: todo.categories.title, todos: [todo]})
+          this.categories.push({title: todo.category.title, todos: [todo]})
         } else {
           if (todo && this.categories[categoryIndex]) {
             this.categories[categoryIndex].todos.push(todo);
@@ -93,16 +59,22 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+
   get filteredCategories() {
     return this.categories.filter((category) =>
       category.title.toLowerCase().includes(this.selectedCategory.toLowerCase())
     );
   }
 
-  deleteTodo(todo: Todo) {
-    const confirmMessage = `Avez vous bien terminé la tâche "${todo.title}" ?`;
+  finishTodo(todo: Todo) {
+    const confirmMessage = `Avez vous bien terminé la tâche "${todo.content}" ?`;
     if (confirm(confirmMessage)) {
-      console.log("supprimé");
+      this.todoService.setFinished(todo.id).subscribe(() => {
+        this.alertService.success(`${todo.content} est maintenant finie`);
+        this.getUserInformation();
+      }, (error) => {
+        this.alertService.error(`Erreur : ${error.message}`)
+      });
     }
   }
 

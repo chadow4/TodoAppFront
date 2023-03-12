@@ -1,0 +1,35 @@
+<div class="adding-todo row animate__animated animate__fadeIn">
+  <form #todoF="ngForm" (ngSubmit)="(todoF.form.valid && addingTodoForm.idCategory != 0) && onSubmit()">
+    <div class="form-title">
+      <h1 class="text-uppercase fw-bold text-center mb-4">Ajouter une tâche</h1>
+    </div>
+    <div class="form-group">
+      <label for="content" class="form-label"></label>
+      <input type="text" placeholder="votre tâche" class="form-control" id="content" #content="ngModel"
+             [(ngModel)]="addingTodoForm.content" name="content" required>
+    </div>
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="content.errors && todoF.submitted">
+      le champ ne doit pas être vide
+    </div>
+    <div class="form-group">
+      <label for="category" class="form-label"></label>
+      <select class="form-select" id="category" #category="ngModel" [(ngModel)]="addingTodoForm.idCategory"
+              name="category" required>
+        <option value="0">Choisissez une catégorie</option>
+        <option *ngFor="let category of categoriesList" [value]="category.id">{{ category.title }}</option>
+      </select>
+    </div>
+
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="(category.errors || addingTodoForm.idCategory == 0) && todoF.submitted">
+      Vous devez sélectionner une catégorie
+    </div>
+    <div class="form-group text-center">
+    <button type="submit" class="btn-juju-rounded">Ajouter</button>
+    </div>
+  </form>
+
+</div>

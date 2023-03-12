@@ -11,7 +11,7 @@ import {UserCreate} from "../../Models/user-model";
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm = {username: '', email: '', password: '', passwordRetype: ''};
+  registerForm = {username: '', email: '', password: ''};
 
 
   constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {

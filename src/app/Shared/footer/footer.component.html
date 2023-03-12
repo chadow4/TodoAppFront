@@ -1,0 +1,62 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item mb-3">
+            <span class="footer-title-nav">Navigation</span>
+          </li>
+          <li *ngIf="!loggedIn" class="nav-item my-2">
+            <a class="nav-link"  [routerLink]="['login']" (click)="scrollTop()" href="#">Connexion</a>
+          </li>
+          <li *ngIf="!loggedIn" class="nav-item my-3">
+            <a class="nav-link"  [routerLink]="['register']" (click)="scrollTop()" href="#">Inscription</a>
+          </li>
+          <li *ngIf="loggedIn" class="nav-item my-3">
+            <a class="nav-link" [routerLink]="['dashboard']" (click)="scrollTop()" href="#"><i class="fas fa-tasks me-2"></i>Ma todoList</a>
+          </li>
+          <li *ngIf="loggedIn" class="nav-item my-3">
+            <a class="nav-link"  [routerLink]="['adding-todo']" (click)="scrollTop()" href="#"><i class="fa-solid fa-pen me-2"></i>Ajouter une tâche</a>
+          </li>
+          <li *ngIf="loggedIn" class="nav-item my-3">
+            <a class="nav-link"  [routerLink]="['my-account']" (click)="scrollTop()" href="#"><i class="fa fa-user me-2"></i> Mes informations</a>
+          </li>
+          <li *ngIf="loggedIn" (click)="logout()" class="nav-item my-2">
+            <a class="nav-link" href="#"><i class="fa fa-window-close pe-2"
+                                            aria-hidden="true"></i>Deconnexion</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4 footer-column footer-center flex-row flex-md-column">
+        <ul class="nav flex-column mb-3">
+          <li class="nav-item">
+            <span class="footer-title">JUJU TODOAPP</span>
+          </li>
+        </ul>
+        <img src="../../../assets/todoicon.png" width="100" alt="todoicon" class="img-fluid d-none d-md-flex">
+      </div>
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item mb-3">
+            <span class="footer-title-nav">Contact</span>
+          </li>
+          <li class="nav-item my-3">
+            <a class="nav-link" href="https://github.com/chadow4"><i class="fa-brands fa-github me-2"></i>chadow4</a>
+          </li>
+          <li class="nav-item my-3">
+            <a class="nav-link" href="mailto:chadow.video@gmail.com"><i class="fas fa-envelope me-2"></i>chadow.video@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center"><i class="fas fa-ellipsis-h"></i></div>
+
+    <div class="row text-center border-top border-2 border-secondary">
+      <div class="col-md-12 box my-2">
+        <span class="copyright quick-links">Copyright &copy; Julien SANCHEZ <script>document.write(new Date().getFullYear())</script>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

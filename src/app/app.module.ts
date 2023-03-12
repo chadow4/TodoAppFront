@@ -16,6 +16,9 @@ import {HeaderComponent} from './Shared/header/header.component';
 import {LoginComponent} from './Pages/login/login.component';
 import {RegisterComponent} from './Pages/register/register.component';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { AddingTodoComponent } from './Pages/adding-todo/adding-todo.component';
+import { MyaccountComponent } from './Pages/myaccount/myaccount.component';
+import { FooterComponent } from './Shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     DashboardComponent,
     HeaderComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddingTodoComponent,
+    MyaccountComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

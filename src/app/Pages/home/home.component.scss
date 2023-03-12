@@ -1,18 +1,13 @@
-.home {
-  padding-top: 19em;
-  padding-bottom: 20em;
-}
 
 .welcome-text-container h1 {
-  font-size: 4em;
-  letter-spacing: 0.1em; /* Utilisation d'une unité de mesure relative */
-  white-space: normal; /* Évite le chevauchement des mots */
+  font-size: 3.5em;
+  white-space: nowrap;
   word-wrap: break-word;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .welcome-text-container h1 {
     font-size: 2em;
   }

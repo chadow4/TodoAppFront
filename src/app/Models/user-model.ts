@@ -10,6 +10,7 @@ export interface User {
 export interface UserJwtSession {
   id: number;
   username: string;
+  email: string;
 }
 
 export interface UserJwtToken {

@@ -23,7 +23,7 @@ export class AuthService {
 
   login(userLogin: UserLogin): Observable<UserJwtToken> {
 
-    return this.http.post<UserJwtToken>(AUTH_API + 'login', {userLogin}).pipe(
+    return this.http.post<UserJwtToken>(AUTH_API + 'login', userLogin).pipe(
       tap((response: UserJwtToken) => {
         // mettre à jour le BehaviorSubject si la connexion réussit
         this.isLoggedInSubject.next(true);
@@ -32,16 +32,17 @@ export class AuthService {
   }
 
   register(userCreateDto: UserCreate): Observable<any> {
-    return this.http.post<UserCreate>(AUTH_API + 'register', {userCreateDto});
+    console.log(userCreateDto);
+    return this.http.post<UserCreate>(AUTH_API + 'register', userCreateDto);
   }
 
   logout(): void {
     localStorage.removeItem(USER_TOKEN_KEY);
     this.isLoggedInSubject.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['home']).then(() => this.alertService.success('Vous venez de vous déconnecter'))
   }
 
-  getCurrentSession(): UserJwtSession | null {
+  getCurrentSession(): UserJwtSession {
     const userJwtToken = localStorage.getItem(USER_TOKEN_KEY);
     return userJwtToken ? JSON.parse(atob(userJwtToken.split('.')[1])) : null;
   }
@@ -59,7 +60,7 @@ export class AuthService {
     const userJwtTokenString = JSON.stringify(token);
     window.localStorage.setItem(USER_TOKEN_KEY, userJwtTokenString);
     this.router.navigate(['/']);
-    this.alertService.success('Vous etes maintenant connecté');
+    this.alertService.success('Vous êtes maintenant connecté');
   }
 
 }

@@ -1,15 +1,17 @@
 import {Category} from "./category.model";
 
 export interface Todo {
-  title: string;
+
+  id: number;
+  content: string;
   finished: boolean;
-  date: Date;
-  categories: Category;
+  createdAt: Date;
+  category: Category;
 
 }
 
 export interface TodoCreate {
-  title: string;
-  description: string;
-  category: Category;
+  content: string;
+  idUser: number;
+  idCategory: number;
 }

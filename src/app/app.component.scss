@@ -5,6 +5,12 @@
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
+  flex-grow:1;
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+  min-height: 92vh;
+  border-bottom: 2px solid #279ef1;
 }
 
 
