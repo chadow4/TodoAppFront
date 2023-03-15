@@ -9,12 +9,24 @@
   position: relative;
 }
 
+.burger{
+
+  &:hover{
+    animation: pulse 0.5s ease-in-out;
+  }
+}
+
 .burger-menu{
   color: black;
   font-weight: bold;
   font-size: 24pt;
   list-style: none;
   text-transform: none;
+  transition: transform 0.3s ease-in-out;
+  &:hover{
+    animation: pulse 0.5s ease-in-out;
+
+  }
 }
 .underline::before{
   content: '';
@@ -37,6 +49,18 @@
     left: 0;
     right: auto;
     width: 100%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
