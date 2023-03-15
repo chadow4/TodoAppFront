@@ -6,7 +6,7 @@ import {User, UserCreate, UserJwtSession, UserJwtToken, UserLogin} from "../Mode
 import {AlertService} from "./alert.service";
 
 
-const AUTH_API = 'http://localhost:3000/auth/';
+const AUTH_API = 'https://jsmb.fr:33000/auth/';
 const USER_TOKEN_KEY = 'user_token_key';
 
 @Injectable({

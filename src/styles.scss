@@ -86,3 +86,10 @@ html{
   min-width: 0;
   color: black !important;
 }
+@media (max-width: 996px) {
+  .mat-headline, .mat-typography h1 {
+    font: 400 26px/32px 'Montserrat', sans-serif;
+  }
+}
+
+

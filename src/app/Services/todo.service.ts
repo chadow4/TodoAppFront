@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Todo, TodoCreate} from "../Models/todo.model";
 
-const TODO_API = 'http://localhost:3000/todos/';
+const TODO_API = 'https://jsmb.fr:33000/todos/';
 
 @Injectable({
   providedIn: 'root'

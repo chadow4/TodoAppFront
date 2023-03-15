@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../Services/auth.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../Services/alert.service";
-import {UserLogin} from "../../Models/user-model";
+import {UserCreate, UserLogin} from "../../Models/user-model";
 
 @Component({
   selector: 'app-login',
@@ -21,10 +21,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   onSubmit() {
     const userLogin = this.loginForm as UserLogin;
     this.authService.login(userLogin).subscribe({
-      next: data => this.authService.setCurrentToken(data),
+      next: (data) => {
+        this.authService.setCurrentToken(data)
+      },
       error: err => this.alertService.error(err.error.message)
     });
   }

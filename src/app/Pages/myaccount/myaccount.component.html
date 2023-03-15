@@ -1,22 +1,22 @@
 <div class="my-account row animate__animated animate__fadeIn">
   <div class="my-account-informations">
-    <h1>MES INFORMATIONS</h1>
+    <h1>MES INFOS</h1>
     <div class="my-account-informations-recap">
       <div class="my-account-informations-image">
-        <div class="my-account-informations-image-container">
+        <div class="my-account-informations-image-container mb-2">
           <img src="https://cutt.ly/Y89B5ih" alt="profile-image">
         </div>
       </div>
-      <div class="my-account-informations-pseudo gap-3">
-        <h2>Pseudo:</h2>
-        <p>{{user?.username}}</p>
+      <div class="my-account-informations-pseudo flex-column flex-md-row gap-0 gap-md-3">
+        <h2>Pseudo :</h2>
+        <p class="text-center">{{user?.username}}</p>
       </div>
-      <div class="my-account-informations-email gap-3">
-        <h2>Email :</h2>
+      <div class="my-account-informations-email flex-column flex-md-row gap-0 gap-md-3">
+        <h2>Email : </h2>
         <p>{{user?.email}}</p>
       </div>
-      <div class="my-account-informations-password gap-3">
-        <h2 class="mt-0">Mot de passe :</h2>
+      <div class="my-account-informations-password flex-column flex-md-row gap-0 gap-md-3">
+        <h2>Mot de passe :</h2>
         <p>******************</p>
       </div>
     </div>

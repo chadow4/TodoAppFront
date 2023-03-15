@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../Models/user-model";
 
-const USER_API = 'http://localhost:3000/users/';
+const USER_API = 'https://jsmb.fr:33000/users/';
 
 
 @Injectable({

@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {User} from "../Models/user-model";
 import {Category} from "../Models/category.model";
 
-const CATEGORY_API = 'http://localhost:3000/categories/';
+const CATEGORY_API = 'https://jsmb.fr:33000/categories/';
 
 
 @Injectable({

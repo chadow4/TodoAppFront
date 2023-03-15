@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userSession = this.auth.getCurrentSession();
     this.getUserInformation();
+    this.categories = [];
   }
 
   getUserInformation() {
@@ -72,6 +73,7 @@ export class DashboardComponent implements OnInit {
       this.todoService.setFinished(todo.id).subscribe(() => {
         this.alertService.success(`${todo.content} est maintenant finie`);
         this.getUserInformation();
+        this.selectedCategory = '';
       }, (error) => {
         this.alertService.error(`Erreur : ${error.message}`)
       });

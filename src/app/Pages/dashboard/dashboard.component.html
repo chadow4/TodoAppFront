@@ -1,20 +1,26 @@
-<div class="dashboard row  animate__animated animate__fadeIn py-5">
-  <div class="presentation col-10 col-md-4 py-1 my-5">
+<div class="dashboard row  animate__animated animate__fadeIn">
+  <div class="presentation col-10 col-md-4 py-3 my-5 text-center">
     <h1
       class="my-2">
       Bonjour {{userSession?.username}}
     </h1>
     <h2 class="my-2">
       Vous avez {{countTodo}} tâche(s) restante(s)</h2>
+    <a class="nav-link underline btn-juju p-2 text-white"
+       [routerLink]="['/adding-todo']"><i class="fa-solid fa-pen me-2"></i>Ajouter
+      une tâche</a>
+
   </div>
-  <div class="mb-3 col-auto">
+  <div *ngIf="filteredCategories.length > 0" class="mb-3 col-auto">
     <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select">
       <option value="">Toutes les catégories</option>
       <option *ngFor="let category of categories" [value]="category.title">{{category.title}}</option>
     </select>
   </div>
 
-  <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4"  role="alert" *ngIf="filteredCategories.length == 0">Vous n'avez encore aucune tâches à réaliser !</div>
+  <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4" role="alert"
+       *ngIf="countTodo== 0">Vous n'avez encore aucune tâches à réaliser !
+  </div>
   <table *ngIf="filteredCategories.length > 0" class="table">
     <tbody *ngFor="let category of filteredCategories">
     <tr class="tr-category d-flex align-items-center h5">
@@ -24,7 +30,8 @@
       <td class="col-12 col-md-4"> {{ todo.content }}</td>
       <td class="col-12 col-md-4">{{ todo.createdAt | date }}</td>
       <td class="col-12 col-md-4">
-        <button class="btn btn-success btn-sm ml-2" (click)="finishTodo(todo)">Terminer la tâche  <i class="ms-1 fa-solid fa-check"></i>
+        <button class="btn btn-success btn-sm ml-2" (click)="finishTodo(todo)">Terminer la tâche <i
+          class="ms-1 fa-solid fa-check"></i>
         </button>
       </td>
     </tr>
