@@ -59,7 +59,7 @@ export class AuthService {
   setCurrentToken(token: UserJwtToken): void {
     const userJwtTokenString = JSON.stringify(token);
     window.localStorage.setItem(USER_TOKEN_KEY, userJwtTokenString);
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
     this.alertService.success('Vous êtes maintenant connecté');
   }
 
