@@ -35,6 +35,18 @@ img {
   width: 260px;
 }
 
+
+@media screen and (max-width: 992px) {
+  img{
+    width: 170px;
+  }
+  .welcome-text-container[_ngcontent-owb-c17] h2[_ngcontent-owb-c17] {
+    font-size: 10pt !important;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+}
+
 @keyframes bouger {
   0% {
     transform: translateY(0);
