@@ -1,5 +1,5 @@
-<div class="dashboard row  animate__animated animate__fadeIn">
-  <div class="presentation col-10 col-md-4 py-3 my-5 text-center">
+<div class="dashboard row  animate__animated animate__fadeIn my-5">
+  <div class="presentation col-10 col-md-4 py-3  my-md-0 text-center">
     <h1
       class="my-2">
       Bonjour {{userSession?.username}}
@@ -11,7 +11,7 @@
       une tâche</a>
 
   </div>
-  <div *ngIf="filteredCategories.length > 0" class="mb-3 col-auto">
+  <div *ngIf="filteredCategories.length > 0" class="my-5 col-auto">
     <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select">
       <option value="">Toutes les catégories</option>
       <option *ngFor="let category of categories" [value]="category.title">{{category.title}}</option>

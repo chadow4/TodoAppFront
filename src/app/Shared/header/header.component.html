@@ -15,9 +15,6 @@
                                                      [routerLink]="['/dashboard']"><i
       class="fas fa-tasks me-2"></i>Ma
       TodoList</a></li>
-    <li *ngIf="loggedIn" class="nav-item rounded"><a class="nav-link underline btn-juju"
-                                                     [routerLink]="['/adding-todo']"><i class="fa-solid fa-pen me-2"></i>Ajouter
-      une tâche</a></li>
 
     <li *ngIf="loggedIn" class="nav-item dropdown rounded">
       <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown" role="button"
@@ -27,7 +24,7 @@
         <li><a [routerLink]="['/my-account']" class="dropdown-item" href="#"><i class="fa fa-user me-2 py-2"></i> Mes
           informations</a></li>
         <li><a (click)="logout()" class="dropdown-item py-2 border-top pt-2" href="#"><i class="fa fa-window-close me-2"
-                                                                         aria-hidden="true"></i>Deconnexion</a>
+                                                                                         aria-hidden="true"></i>Deconnexion</a>
         </li>
       </ul>
     </li>
@@ -49,6 +46,11 @@
     <li *ngIf="!loggedIn" class="nav-item rounded"><a data-bs-dismiss="offcanvas" [routerLink]="['/register']"
                                                       class="nav-link underline btn-juju"
                                                       href="">Inscription</a></li>
+    <li *ngIf="loggedIn" class="nav-item rounded"><a data-bs-dismiss="offcanvas" [routerLink]="['/dashboard']"
+                                                     class="nav-link underline btn-juju"
+                                                     href=""><i
+      class="fas fa-tasks me-2"></i>Ma
+      TodoList</a></li>
     <li *ngIf="loggedIn" class="nav-item dropdown rounded">
       <a class="nav-link dropdown-toggle underline btn-juju" href="#" id="navbarDropdown2"
          role="button" data-bs-toggle="dropdown"
@@ -57,15 +59,8 @@
         <li><a data-bs-dismiss="offcanvas" [routerLink]="['/my-account']" class="dropdown-item" href="#"><i
           class="fa fa-user me-2"></i> Mes
           informations</a></li>
-        <li><a data-bs-dismiss="offcanvas" [routerLink]="['/dashboard']" class="dropdown-item" href="#"><i
-          class="fas fa-tasks me-2"></i> Ma
-          TodoList</a></li>
-        <li><a data-bs-dismiss="offcanvas" [routerLink]="['/adding-todo']" class="dropdown-item" href="#"><i
-          class="fa-solid fa-pen me-2"></i>Ajouter
-          une tâche</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
+        <hr class="dropdown-divider">
+
         <li><a (click)="logout()" class="dropdown-item" href="#"><i class="fa fa-window-close me-2"
                                                                     aria-hidden="true"></i>Deconnexion</a>
         </li>
