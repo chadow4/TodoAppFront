@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
         this.alertService.success(`${todo.content} est maintenant finie`);
         this.getUserInformation();
         this.selectedCategory = '';
+        window.scrollTo(0, 0);
       }, (error) => {
         this.alertService.error(`Erreur : ${error.message}`)
       });
