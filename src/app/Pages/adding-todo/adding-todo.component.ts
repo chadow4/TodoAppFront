@@ -18,7 +18,7 @@ export class AddingTodoComponent implements OnInit {
   userSession!: UserJwtSession;
   categoriesList?: Category[];
 
-  addingTodoForm = {content: '', idUser: 0, idCategory: 0}
+  addingTodoForm = {content: '', idCategory: 0}
 
   constructor(
     private todoService: TodoService,
@@ -37,7 +37,6 @@ export class AddingTodoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.addingTodoForm.idUser = this.userSession.id;
       const todoCreate = this.addingTodoForm as TodoCreate;
     this.todoService.createTodo(todoCreate).subscribe({
       next: data => {

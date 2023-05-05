@@ -12,6 +12,5 @@ export interface Todo {
 
 export interface TodoCreate {
   content: string;
-  idUser: number;
   idCategory: number;
 }

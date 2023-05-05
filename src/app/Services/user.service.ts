@@ -14,8 +14,8 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  public getUserInformation(id?: number): Observable<User> {
-    const url = `${USER_API}${id}`;
+  public getUserInformation(): Observable<User> {
+    const url = `${USER_API}infos`;
     return this.http.get<User>(url);
   }
 

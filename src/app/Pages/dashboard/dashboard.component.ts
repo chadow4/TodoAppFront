@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
 import {Todo} from "../../Models/todo.model";
 import {UserService} from "../../Services/user.service";
 import {AuthService} from "../../Services/auth.service";
@@ -39,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
   getUserInformation() {
     this.categories = [];
-    this.userService.getUserInformation(this.userSession?.id).subscribe(res => {
+    this.userService.getUserInformation().subscribe(res => {
       this.userInformation = res;
       this.setCategoriesAndTodosForUser(this.userInformation);
       this.countTodo = this.userInformation.todos.filter(todo => !todo.finished).length;
