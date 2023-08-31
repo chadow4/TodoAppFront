@@ -5,7 +5,7 @@
       Bonjour {{userSession?.username}}
     </h1>
     <h2 class="my-2">
-      Vous avez {{countTodo}} tâche(s) restante(s)</h2>
+      Vous avez {{categoriesWithTodosNotFinished.length}} tâche(s) restante(s)</h2>
     <a class="nav-link underline btn-juju p-2 text-white"
        [routerLink]="['/adding-todo']"><i class="fa-solid fa-pen me-2"></i>Ajouter
       une tâche</a>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4 mt-5" role="alert"
-         *ngIf="countTodo== 0">Vous n'avez encore aucune tâches à réaliser !
+         *ngIf="categoriesWithTodosNotFinished.length == 0">Vous n'avez aucune tâches à réaliser !
     </div>
     <table *ngIf="filteredCategoriesNotFinished.length > 0" class="table">
       <tbody *ngFor="let category of filteredCategoriesNotFinished">
@@ -51,6 +51,9 @@
         <option value="">Toutes les catégories</option>
         <option *ngFor="let category of categoriesWithTodosFinished" [value]="category.title">{{category.title}}</option>
       </select>
+    </div>
+    <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4 mt-5" role="alert"
+         *ngIf="categoriesWithTodosFinished.length == 0">Vous n'avez aucune tâches terminées !
     </div>
     <table *ngIf="filteredCategoriesFinished.length > 0" class="table">
       <tbody *ngFor="let category of filteredCategoriesFinished">

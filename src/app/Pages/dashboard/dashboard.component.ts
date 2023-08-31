@@ -14,7 +14,6 @@ import {TodoService} from "../../Services/todo.service";
 })
 export class DashboardComponent implements OnInit {
 
-  countTodo: number = 0;
 
   userSession?: UserJwtSession;
   userInformation!: User;
@@ -44,7 +43,6 @@ export class DashboardComponent implements OnInit {
     this.userService.getUserInformation().subscribe(res => {
       this.userInformation = res;
       this.setCategoriesAndTodosForUser(this.userInformation);
-      this.countTodo = this.userInformation.todos.filter(todo => !todo.finished).length;
     })
   }
 
