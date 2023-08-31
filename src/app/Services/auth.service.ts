@@ -4,9 +4,10 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {User, UserCreate, UserJwtSession, UserJwtToken, UserLogin} from "../Models/user-model";
 import {AlertService} from "./alert.service";
+import {API_URL} from "./config";
 
 
-const AUTH_API = 'https://jsmb.fr:33000/auth/';
+const AUTH_API = API_URL +'/auth/';
 const USER_TOKEN_KEY = 'user_token_key';
 
 @Injectable({

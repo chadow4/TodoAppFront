@@ -7,10 +7,12 @@ export interface Todo {
   finished: boolean;
   createdAt: Date;
   category: Category;
+  desiredEndDate: Date;
 
 }
 
 export interface TodoCreate {
   content: string;
   idCategory: number;
+  desiredEndDate: Date;
 }

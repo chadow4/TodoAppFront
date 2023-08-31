@@ -1,4 +1,3 @@
-<script src="../../Shared/header/header.component.ts"></script>
 <div class="adding-todo row animate__animated animate__fadeIn">
   <form #todoF="ngForm" (ngSubmit)="(todoF.form.valid && addingTodoForm.idCategory != 0) && onSubmit()">
     <div class="form-title">
@@ -28,6 +27,20 @@
          *ngIf="(category.errors || addingTodoForm.idCategory == 0) && todoF.submitted">
       Vous devez sélectionner une catégorie
     </div>
+
+
+    <div class="form-group">
+      <label class="form-label" for="desiredEndDate"></label>
+      <input class="form-control" #date="ngModel" type="date" id="desiredEndDate" name="desiredEndDate" min="2000-01-01" max="2100-12-31" required
+             [(ngModel)]="addingTodoForm.desiredEndDate">
+    </div>
+    <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+         role="alert"
+         *ngIf="date == null && todoF.submitted">
+      Vous devez sélectionner une date pour laquelle la tâche doit être effectuée
+    </div>
+
+
     <div class="form-group text-center">
     <button type="submit" class="btn-juju-rounded">Ajouter</button>
     </div>

@@ -1,4 +1,4 @@
-<div class="dashboard row  animate__animated animate__fadeIn my-5">
+<div class="dashboard row animate__animated animate__fadeIn my-5">
   <div class="presentation col-10 col-md-4 py-3  my-md-0 text-center">
     <h1
       class="my-2">
@@ -11,31 +11,64 @@
       une tâche</a>
 
   </div>
-  <div *ngIf="filteredCategories.length > 0" class="my-5 col-auto">
-    <select id="categorySelect" [(ngModel)]="selectedCategory" class="form-select">
-      <option value="">Toutes les catégories</option>
-      <option *ngFor="let category of categories" [value]="category.title">{{category.title}}</option>
-    </select>
-  </div>
+  <section class="my-5 row justify-content-center flex-column align-items-center text-center">
+    <h1 class="border border-primary p-5 text-white bg-opacity-75 bg-black rounded col-auto">Tâches à réaliser</h1>
+    <div *ngIf="filteredCategoriesNotFinished.length > 0" class="my-5 col-auto">
+      <select id="categorySelect" [(ngModel)]="selectedCategoryNotFinished" class="form-select">
+        <option value="">Toutes les catégories</option>
+        <option *ngFor="let category of categoriesWithTodosNotFinished" [value]="category.title">{{category.title}}</option>
+      </select>
+    </div>
 
-  <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4 mt-5" role="alert"
-       *ngIf="countTodo== 0">Vous n'avez encore aucune tâches à réaliser !
-  </div>
-  <table *ngIf="filteredCategories.length > 0" class="table">
-    <tbody *ngFor="let category of filteredCategories">
-    <tr class="tr-category d-flex align-items-center h5">
-      <i class="fa-solid fa-list"></i> {{ category.title }}
-    </tr>
-    <tr class="tr-todo row m-0 align-items-center" *ngFor="let todo of category.todos">
-      <td class="col-12 col-md-4"> {{ todo.content }}</td>
-      <td class="col-12 col-md-4">{{ todo.createdAt | date }}</td>
-      <td class="col-12 col-md-4">
-        <button class="btn btn-success btn-sm ml-2" (click)="finishTodo(todo)">Terminer la tâche <i
-          class="ms-1 fa-solid fa-check"></i>
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+    <div class="alert alert-info d-flex align-items-center justify-content-center col-10 col-md-4 mt-5" role="alert"
+         *ngIf="countTodo== 0">Vous n'avez encore aucune tâches à réaliser !
+    </div>
+    <table *ngIf="filteredCategoriesNotFinished.length > 0" class="table">
+      <tbody *ngFor="let category of filteredCategoriesNotFinished">
+      <tr class="tr-category d-flex align-items-center h5">
+        <i class="fa-solid fa-list"></i> {{ category.title }}
+      </tr>
+      <tr class="tr-todo row m-0 align-items-center" *ngFor="let todo of category.todos">
+        <td class="col-12 col-md-4"> {{ todo.content }}</td>
+        <td class="col-12 col-md-4">{{ todo.desiredEndDate | date }}</td>
+        <td class="col-12 col-md-4">
+          <button class="btn btn-success btn-sm ml-2" (click)="finishTodo(todo)">Terminer la tâche <i
+            class="ms-1 fa-solid fa-check"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+  <button class="btn-juju col-auto" (click)="displayTodosFinished = !displayTodosFinished">
+    <i
+      class="me-1 fa fa-tasks"></i> {{ displayTodosFinished ? 'Masquer les todos terminées' : 'Afficher les todos terminées' }}
+  </button>
+  <section *ngIf="displayTodosFinished" class="my-5 row justify-content-center flex-column align-items-center text-center">
+    <h1 class="border border-primary p-5 text-white bg-opacity-75 bg-black rounded col-auto">Tâches terminées</h1>
+    <div *ngIf="filteredCategoriesFinished.length > 0" class="my-5 col-auto">
+      <select id="categorySelect2" [(ngModel)]="selectedCategoryFinished" class="form-select">
+        <option value="">Toutes les catégories</option>
+        <option *ngFor="let category of categoriesWithTodosFinished" [value]="category.title">{{category.title}}</option>
+      </select>
+    </div>
+    <table *ngIf="filteredCategoriesFinished.length > 0" class="table">
+      <tbody *ngFor="let category of filteredCategoriesFinished">
+      <tr class="tr-category d-flex align-items-center h5">
+        <i class="fa-solid fa-list"></i> {{ category.title }}
+      </tr>
+      <tr class="tr-todo row m-0 align-items-center" *ngFor="let todo of category.todos">
+        <td class="col-12 col-md-4"> {{ todo.content }}</td>
+        <td class="col-12 col-md-4">{{ todo.desiredEndDate | date }}</td>
+        <td class="col-12 col-md-4">
+          <button class="btn btn-danger btn-sm ml-2" (click)="finishTodo(todo)">Refaire la tâche <i
+            class="ms-1 fa-solid fa-arrow-alt-circle-up"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
 </div>
 

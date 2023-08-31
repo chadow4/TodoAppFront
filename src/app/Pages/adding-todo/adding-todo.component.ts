@@ -18,7 +18,7 @@ export class AddingTodoComponent implements OnInit {
   userSession!: UserJwtSession;
   categoriesList?: Category[];
 
-  addingTodoForm = {content: '', idCategory: 0}
+  addingTodoForm = {content: '', idCategory: 0, desiredEndDate: new Date()}
 
   constructor(
     private todoService: TodoService,
